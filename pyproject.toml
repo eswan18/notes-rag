@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "notes_rag"
+version = "0.1.0"
+description = "A RAG application for querying a set of markdown files"
+authors = ["Ethan Swan <ethanpswan@gmail.com>"]
+license = "MIT"
+
+[[tool.poetry.packages]]
+include = "notes_rag"
+from = "src"
+
+[tool.poetry.dependencies]
+python = "3.11.4"
+langchain = "^0.1.10"
+tqdm = "^4.66.2"
+unstructured = { version = "^0.12.5", extras = ["md"] }
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.0"
