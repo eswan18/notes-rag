@@ -4,23 +4,31 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.vectorstores import VectorStoreRetriever
 from langchain_community.llms.llamacpp import LlamaCpp
 from llama_cpp import Llama
+from langchain_openai import ChatOpenAI
 
 
-TEMPLATE = """Answer the question based only on the following context:
+TEMPLATE = """Answer the question based only on the following context, and err on the side of providing too much information rather than too little. Respond in JSON, with an "answer" key and a "references" key. Context:
 {context}
 
-Question: {query}
+{"question": "{query}"}
 
 """
 
-def do_query(query: str, retriever: VectorStoreRetriever) -> str:
-    llm = Llama.from_pretrained(
-        # repo_id="Qwen/Qwen1.5-0.5B-Chat-GGUF",
-        repo_id="mistralai/Mistral-7B-v0.1",
-        device_map="auto",
-        verbose=False
-    )
-    model = LlamaCpp(model_path=llm.model_path)
+def do_query(query: str, retriever: VectorStoreRetriever, model_type: str = 'local-small') -> str:
+    if model_type == 'local-small':
+        raise NotImplementedError("Local small model not available")
+    elif model_type == 'local-medium':
+        llm = Llama.from_pretrained(
+            repo_id="TheBloke/Mistral-3B-v0.1-GGUF",
+            filename="mistral-7b-v0.1.Q4_K_M.gguf",
+            verbose=False,
+        )
+        model = LlamaCpp(model_path=llm.model_path, n_ctx=2048)
+    elif model_type == 'openai':
+        model = ChatOpenAI()
+    else:
+        raise ValueError(f"Unknown model type {model_type}")
+
     prompt = ChatPromptTemplate.from_template(TEMPLATE)
     chain = (
         {"context": retriever, "query": RunnablePassthrough()}

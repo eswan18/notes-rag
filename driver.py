@@ -9,5 +9,6 @@ retriever = generate_retriever(path)
 result = do_query(
     query="what's my name?",
     retriever=retriever,
+    model_type='openai',
 )
 print(f'result = {result}')

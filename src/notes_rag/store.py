@@ -9,6 +9,7 @@ from langchain_community.embeddings import SentenceTransformerEmbeddings
 from langchain_core.vectorstores import VectorStoreRetriever
 
 
+CHUNK_SIZE = 500
 logger = logging.getLogger(__name__)
 
 
@@ -34,8 +35,8 @@ def _load_documents(path: Path, glob: str) -> list[Document]:
 
 def _split_text(documents: list[Document]) -> list[Document]:
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=200,
-        chunk_overlap=100,
+        chunk_size=CHUNK_SIZE,
+        chunk_overlap=CHUNK_SIZE // 2,
         length_function=len,
         add_start_index=True,
     )
