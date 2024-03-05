@@ -14,6 +14,8 @@ python = "3.11.4"
 langchain = "^0.1.10"
 tqdm = "^4.66.2"
 unstructured = { version = "^0.12.5", extras = ["md"] }
+sentence-transformers = "^2.5.1"
+faiss-cpu = "^1.8.0"
 
 [tool.poetry.group.dev.dependencies]
 ipython = "^8.0"
