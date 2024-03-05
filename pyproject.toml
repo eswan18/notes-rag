@@ -16,6 +16,8 @@ tqdm = "^4.66.2"
 unstructured = { version = "^0.12.5", extras = ["md"] }
 sentence-transformers = "^2.5.1"
 faiss-cpu = "^1.8.0"
+langchain-openai = "^0.0.8"
+llama-cpp-python = "^0.2.55"
 
 [tool.poetry.group.dev.dependencies]
 ipython = "^8.0"
