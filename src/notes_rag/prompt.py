@@ -7,10 +7,10 @@ from llama_cpp import Llama
 from langchain_openai import ChatOpenAI
 
 
-TEMPLATE = """Answer the question based only on the following context, and err on the side of providing too much information rather than too little. Respond in JSON, with an "answer" key and a "references" key. Context:
+TEMPLATE = """Answer the question based only on the following context (personal notes), and err on the side of providing too much information rather than too little. Respond in JSON, with an "answer" key and a "references" key. Context:
 {context}
 
-{"question": "{query}"}
+Question: {query}
 
 """
 
