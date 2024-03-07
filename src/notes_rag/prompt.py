@@ -7,7 +7,7 @@ from llama_cpp import Llama
 from langchain_openai import ChatOpenAI
 
 
-TEMPLATE = """Answer the question based only on the following context (personal notes), and err on the side of providing too much information rather than too little. Respond in JSON, with an "answer" key and a "references" key. Context:
+TEMPLATE = """Answer the question based only on the following context, my personal notes. Err on the side of providing too much information rather than too little, and explain how you determined it. Mention your sources as a JSON array of documents at the end. Context:
 {context}
 
 Question: {query}

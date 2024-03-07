@@ -9,6 +9,9 @@ license = "MIT"
 include = "notes_rag"
 from = "src"
 
+[tool.poetry.scripts]
+query = "notes_rag.main:query"
+
 [tool.poetry.dependencies]
 python = "3.11.4"
 langchain = "^0.1.10"
