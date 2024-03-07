@@ -1,17 +1,8 @@
 # Notes RAG
 
-The easiest way to run this is to get an API key from OpenAI and then invoke the driver file.
+The easiest way to run this is to get an API key from OpenAI and then start up an interactive query session.
 
 ```bash
-OPENAI_API_KEY=abcdef ipython -i driver.py
+OPENAI_API_KEY=abcdef poetry run query <path-to-folder-of-docs>
 ```
 
-After this runs, you will have an interactive Python session including a `do_query` function and a `retriever` object that you can call yourself:
-
-```python
-do_query(
-    'What's my favorite color, based on my notes?',
-    retriever=retriever, 
-    model_type='openai',
-)
-```
