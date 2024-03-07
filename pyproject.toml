@@ -10,7 +10,7 @@ include = "notes_rag"
 from = "src"
 
 [tool.poetry.scripts]
-query = "notes_rag.main:query"
+query = "notes_rag.main:prompt"
 
 [tool.poetry.dependencies]
 python = "3.11.4"
@@ -21,6 +21,8 @@ sentence-transformers = "^2.5.1"
 faiss-cpu = "^1.8.0"
 langchain-openai = "^0.0.8"
 llama-cpp-python = "^0.2.55"
+prompt-toolkit = "^3.0.43"
 
 [tool.poetry.group.dev.dependencies]
 ipython = "^8.0"
+ruff = "^0.3.1"
