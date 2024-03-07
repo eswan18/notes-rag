@@ -1,3 +1,4 @@
+
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
@@ -14,7 +15,7 @@ Question: {query}
 
 """
 
-def do_query(query: str, retriever: VectorStoreRetriever, model_type: str = 'local-small') -> str:
+def do_query(query: str, retriever: VectorStoreRetriever, model_type: str = 'openai') -> str:
     if model_type == 'local-small':
         raise NotImplementedError("Local small model not available")
     elif model_type == 'local-medium':

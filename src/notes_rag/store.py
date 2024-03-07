@@ -1,4 +1,3 @@
-import logging
 from pathlib import Path
 
 from langchain_community.document_loaders import DirectoryLoader
@@ -10,7 +9,6 @@ from langchain_core.vectorstores import VectorStoreRetriever
 
 
 CHUNK_SIZE = 500
-logger = logging.getLogger(__name__)
 
 
 def generate_retriever(path: Path, glob: str = "**/*.md") -> VectorStoreRetriever:
@@ -19,17 +17,21 @@ def generate_retriever(path: Path, glob: str = "**/*.md") -> VectorStoreRetrieve
 
 
 def generate_data_store(path: Path, glob: str = "**/*.md") -> FAISS:
-    logger.debug(f"Generating data store from {path} with glob {glob}")
     documents = _load_documents(path, glob=glob)
+    print(f"Chunking {len(documents)} documents")
     chunks = _split_text(documents)
+    print(f"Chunked into {len(chunks)} chunks")
+    print(f"Generating FAISS data store")
     store = FAISS.from_documents(chunks, embedding=SentenceTransformerEmbeddings())
-    logger.info("Done generating data store")
+    print("Done generating data store")
     return store
 
 
 def _load_documents(path: Path, glob: str) -> list[Document]:
+    print(f"Loading documents from {path} with glob {glob}")
     loader = DirectoryLoader(path, glob=glob)
     documents = loader.load()
+    print(f"Loaded {len(documents)} documents")
     return documents
 
 
